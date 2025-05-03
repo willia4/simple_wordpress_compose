@@ -1,0 +1,30 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: unsecure_wp_password
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - simple_wordpress_wp_custom_theme:/var/www/html/wp-content/themes/custom_theme
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: unsecure_wp_password
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - simple_wordpress_wp_database:/var/lib/mysql
+
+volumes:
+  simple_wordpress_wp_database:
+    external: true
+  simple_wordpress_wp_custom_theme:
+    external: true

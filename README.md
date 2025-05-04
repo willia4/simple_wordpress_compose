@@ -6,7 +6,7 @@ This compose file exists to make it easy to do Wordpress theme development local
 
 To use this setup:
 1. [**One Time Only**] Create the permanent volumes (see [Volumes](#volumes) section below)
-2. Run `docker compose up` in this directory
+2. Run `docker compose up -d` in this directory
 3. Access your Wordpress site at [http://localhost:8080](http://localhost:8080)
 
 Your theme should be accessible from the Wordpress admin page, though it will be broken until you add appropriate files to your custom directory. 
